@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit user</title>
+</head>
+<body>
+<h1>Изменение персональных данных лица</h1>
+<style>
+    table {
+        background: #fffafa; /* цвет фона */
+        border: 1px #ff0000 solid; /* стиль внешней рамки */
+    }
+    td {
+        border: 1px green solid; /* стиль рамки ячеек */
+        padding: 0.2em;
+    }
+    th {
+        background: #c3dbd7;
+        border: 1px blue solid; /* стиль рамки заголовков */
+        padding: 0.2em;
+    }
+</style>
+<form th:method="PATCH" th:action="@{/{id}(id=${user.getId()})}" th:object="${user}">
+    <label for="firstName">Введите имя:</label>
+    <input type="text" th:field="*{firstName}" id="firstName">
+    <br/><br/>
+    <label for="lastName">Введите псевдоним:</label>
+    <input type="text" th:field="*{lastName}" id="lastName">
+    <br/><br/>
+    <label for="age">Введите возраст:</label>
+    <input type="text" th:field="*{age}" id="age">
+    <br/><br/>
+    <input type="submit" value="Сохранить изменения"/>
+</form>
+</body>
+</html>

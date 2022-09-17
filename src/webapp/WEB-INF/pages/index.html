@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User list</title>
+</head>
+<body>
+<h1>Список лиц</h1>
+Чтобы изменить или удалить, нажмите на поле строки
+
+<style>
+    table {
+        background: #fffafa; /* цвет фона */
+        border: 1px #ff0000 solid; /* стиль внешней рамки */
+    }
+    td {
+        border: 1px green solid; /* стиль рамки ячеек */
+        padding: 0.2em;
+    }
+    th {
+        background: #c3dbd7;
+        border: 1px blue solid; /* стиль рамки заголовков */
+        padding: 0.2em;
+    }
+</style>
+<table >
+    <tr>
+        <th>№ п/п</th>
+        <th>Имя</th>
+        <th>Псевдоним</th>
+        <th>Возраст</th>
+    </tr>
+    <tr th:each="user, state : ${userList}" th:with="url = @{/{id}(id=${user.getId()})}">
+        <td><a th:href="@{${url}}" th:utext="${state.count}">No</a></td>
+        <td><a th:href="@{${url}}" th:utext="${user.getFirstName()}">Name</a></td>
+        <td><a th:href="@{${url}}" th:utext="${user.getLastName()}">Last Name</a></td>
+        <td><a th:href="@{${url}}" th:utext="${user.getAge()}">Age</a></td>
+    </tr>
+</table>
+<br/>
+<a href="/create"> <input type="button" value="Добавить новое имя"/> </a>
+</body>
+</html>

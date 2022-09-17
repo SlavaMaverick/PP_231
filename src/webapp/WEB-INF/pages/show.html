@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User</title>
+</head>
+<body>
+<h1>Персональные данные</h1>
+<style>
+    table {
+        background: #fffafa; /* цвет фона */
+        border: 1px #ff0000 solid; /* стиль внешней рамки */
+    }
+    td {
+        border: 1px green solid; /* стиль рамки ячеек */
+        padding: 0.2em;
+    }
+    th {
+        background: #c3dbd7;
+        border: 1px blue solid; /* стиль рамки заголовков */
+        padding: 0.2em;
+    }
+</style>
+<table>
+    <tr>
+        <th>Тип данных</th>
+        <th>Значение</th>
+    </tr>
+    <tr>
+        <td>№ п/п</td>
+        <td th:utext="${user.getId()}">Id</td>
+    </tr>
+    <tr>
+        <td>Имя</td>
+        <td th:utext="${user.getFirstName()}">Name</td>
+    </tr>
+    <tr>
+        <td>Псевдоним</td>
+        <td th:utext="${user.getLastName()}">Last Name</td>
+    </tr>
+    <tr>
+        <td>Возраст</td>
+        <td th:utext="${user.getAge()}">Age</td>
+    </tr>
+</table>
+<br/>
+<form th:method="DELETE" th:action="@{/{id}(id=${user.getId()})}"> <input type="submit" value="Удалить из Списка"/> </form>
+<br/>
+<a th:href="@{/{id}/edit(id=${user.getId()})}"> <input type="button" value="Изменить данные"/> </a>
+<h3><a href="/">Смотреть весь Список</a></h3>
+</body>
+</html>
